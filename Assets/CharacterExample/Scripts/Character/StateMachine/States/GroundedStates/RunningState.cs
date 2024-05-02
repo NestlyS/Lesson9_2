@@ -25,6 +25,18 @@ public class RunningState : GroundedState
     {
         base.Update();
 
+        if (Data.IsCharging)
+        {
+            StateSwitcher.SwitchState<ChargingState>();
+            return;
+        }
+
+        if (Data.IsWalking)
+        {
+            StateSwitcher.SwitchState<WalkingState>();
+            return;
+        }
+
         if (IsHorizontalInputZero())
             StateSwitcher.SwitchState<IdlingState>();
     }

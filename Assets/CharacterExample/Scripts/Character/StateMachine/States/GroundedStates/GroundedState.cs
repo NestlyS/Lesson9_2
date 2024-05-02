@@ -1,7 +1,9 @@
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GroundedState : MovementState
 {
+
     private readonly GroundChecker _groundChecker;
 
     public GroundedState(IStateSwitcher stateSwitcher, StateMachineData data, Character character) : base(stateSwitcher, data, character)
@@ -11,7 +13,7 @@ public class GroundedState : MovementState
     {
         base.Enter();
 
-        View.StartGrounded();   
+        View.StartGrounded();
     }
 
     public override void Exit()
@@ -27,6 +29,7 @@ public class GroundedState : MovementState
 
         if (_groundChecker.IsTouches)
             return;
+
 
         StateSwitcher.SwitchState<FallingState>();
     }
@@ -46,4 +49,5 @@ public class GroundedState : MovementState
     }
 
     private void OnJumpKeyPressed(InputAction.CallbackContext obj) => StateSwitcher.SwitchState<JumpingState>();
+    
 }

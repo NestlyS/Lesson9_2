@@ -14,6 +14,8 @@ public class CharacterStateMachine: IStateSwitcher
         {
             new IdlingState(this, data, character),
             new RunningState(this, data, character),
+            new WalkingState(this, data, character),
+            new ChargingState(this, data, character),
             new FallingState(this, data, character),
             new JumpingState(this, data, character),
         };

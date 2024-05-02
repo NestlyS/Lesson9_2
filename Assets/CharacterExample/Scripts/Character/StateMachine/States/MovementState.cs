@@ -35,6 +35,9 @@ public abstract class MovementState : IState
     {
         Data.XInput = ReadHorizontalInput();
         Data.XVelocity = Data.XInput * Data.Speed;
+
+        Data.IsCharging = ReadChargeInput() > 0;
+        Data.IsWalking = ReadWalkInput() > 0;
     }
 
     public virtual void Update()
@@ -64,4 +67,6 @@ public abstract class MovementState : IState
     private Vector3 GetConvertedVelocity() => new Vector3(Data.XVelocity, Data.YVelocity, 0);
 
     private float ReadHorizontalInput() => Input.Movement.Move.ReadValue<float>();
+    private float ReadChargeInput() => Input.Movement.Charge.ReadValue<float>();
+    private float ReadWalkInput() => Input.Movement.Walk.ReadValue<float>();
 }
